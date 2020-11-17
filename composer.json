@@ -6,7 +6,7 @@
         "phpunit/phpunit": "^9.2"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "DigitalClosuxe\\Business\\Profile\\": "src/"
         }
     }
