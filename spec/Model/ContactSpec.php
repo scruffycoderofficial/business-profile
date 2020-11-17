@@ -4,7 +4,10 @@ namespace spec\DigitalClosuxe\Business\Profile\Model;
 
 use PhpSpec\ObjectBehavior;
 use DigitalClosuxe\Business\Profile\Model\Contact;
-use DigitalClosuxe\Business\Profile\Contracts\Contact as ContactProfile;
+use DigitalClosuxe\Business\Profile\Contracts\{ 
+    EmailAddress, 
+    ContactProfile
+};
 
 class ContactSpec extends ObjectBehavior
 {
@@ -20,6 +23,6 @@ class ContactSpec extends ObjectBehavior
 
     function it_has_a_primary_contact()
     {
-        
+        $this->contactEmail()->shouldHaveType(EmailAddress::class);
     }
 }
