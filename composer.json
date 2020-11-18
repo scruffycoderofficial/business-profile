@@ -3,7 +3,11 @@
         "phpspec/phpspec": "^6.2",
         "friendsofphp/php-cs-fixer": "^2.16",
         "behat/behat": "^3.7",
-        "phpunit/phpunit": "^9.2"
+        "phpunit/phpunit": "^9.2",
+        "illuminate/database": "^8.15",
+        "illuminate/pagination": "^8.15",
+        "illuminate/filesystem": "^8.15",
+        "illuminate/events": "^8.15"
     },
     "autoload": {
         "psr-4": {
