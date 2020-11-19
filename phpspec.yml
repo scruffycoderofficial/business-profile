@@ -1,0 +1,4 @@
+suites:
+    business_profile_suite:
+        namespace: DigitalClosuxe\Business\Profile
+        psr4_prefix: DigitalClosuxe\Business\Profile
