@@ -2,7 +2,7 @@
 
 namespace DigitalClosuxe\Business\Profile\Concerns;
 
-trait BusinessProfile
+trait Profile
 {
     /** [@inheritdoc] */
     public function isActive(): bool

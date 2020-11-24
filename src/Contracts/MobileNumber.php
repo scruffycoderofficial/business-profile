@@ -3,8 +3,8 @@
 namespace DigitalClosuxe\Business\Profile\Contracts;
 
 /**
- * Class EmailAddress
+ * Class MobileNumber
  */
-interface EmailAddress extends PrimaryContact
+interface MobileNumber extends PrimaryContact
 {
 }

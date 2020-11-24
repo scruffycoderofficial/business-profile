@@ -2,7 +2,7 @@
 
 namespace DigitalClosuxe\Business\Profile\Concerns;
 
-trait BusinessSetting
+trait Setting
 {
    /** [@inheritdoc] */
    public function hasSettings(): bool

@@ -3,7 +3,7 @@
 namespace DigitalClosuxe\Business\Profile\Model;
 
 use DigitalClosuxe\Business\Profile\Contracts\{ AccountProfile, ContactProfile };
-use DigitalClosuxe\Business\Profile\Concerns\{ BusinessProfile, BusinessContact, BusinessSetting };
+use DigitalClosuxe\Business\Profile\Concerns\{ Profile as ProfileConcern, Contact, Setting };
 
 /**
  * Class Profile
@@ -14,7 +14,7 @@ class Profile
     {
         return new class implements ContactProfile
         {
-            use BusinessProfile, BusinessContact;
+            use ProfileConcern, Contact;
         };
     }
 
@@ -22,7 +22,7 @@ class Profile
     {
         return new class implements AccountProfile
         {
-            use BusinessProfile, BusinessSetting;
+            use ProfileConcern, Setting;
         };
     }
 }

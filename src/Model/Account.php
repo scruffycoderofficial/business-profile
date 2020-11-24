@@ -2,7 +2,7 @@
 
 namespace DigitalClosuxe\Business\Profile\Model;
 
-use DigitalClosuxe\Business\Profile\Concerns\{ BusinessProfile, BusinessSetting };
+use DigitalClosuxe\Business\Profile\Concerns\{ Profile, Setting };
 use DigitalClosuxe\Business\Profile\Contracts\AccountProfile;
 
 /**
@@ -10,5 +10,5 @@ use DigitalClosuxe\Business\Profile\Contracts\AccountProfile;
  */
 class Account implements AccountProfile
 {
-    use BusinessProfile, BusinessSetting;
+    use Profile, Setting;
 }

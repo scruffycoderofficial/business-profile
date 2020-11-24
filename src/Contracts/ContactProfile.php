@@ -8,7 +8,12 @@ namespace DigitalClosuxe\Business\Profile\Contracts;
 interface ContactProfile extends Profile
 {
     /**
-     * Primary way to get in-contact with the Contact of this Profile
+     * Primary Contact Email Address
      */
     public function contactEmail(): EmailAddress;
+
+    /**
+     * Primary Contact Mobile Number
+     */
+    public function contactNumber(): MobileNumber;
 }

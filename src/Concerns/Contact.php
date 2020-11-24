@@ -2,12 +2,9 @@
 
 namespace DigitalClosuxe\Business\Profile\Concerns;
 
-use DigitalClosuxe\Business\Profile\Contracts\{ 
-    EmailAddress, 
-    ContactProfile
-};
+use DigitalClosuxe\Business\Profile\Contracts\EmailAddress;
 
-trait BusinessContact
+trait Contact
 {
     public function contactEmail(): EmailAddress
     {
