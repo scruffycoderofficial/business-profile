@@ -2,6 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 use DigitalClosuxe\Business\Profile\Testing\DatabaseMigrations;
+use DigitalClosuxe\Business\Extension\Eloquent\Models\Profile;
 
 /**
  * @covers Profile::
@@ -24,8 +25,6 @@ class ProfileTest extends TestCase
 
     public function test_it_can_write_and_read()
     {
-        require_once __DIR__ . '/../../fixtures/models/Profile.php';
-
         $profile = new Profile();
 
         $profile->account_id = 2;
