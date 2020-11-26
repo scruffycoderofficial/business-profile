@@ -1,3 +1,5 @@
+formatter.name: pretty
+
 suites:
     business_profile_suite:
         namespace: DigitalClosuxe\Business\Profile
