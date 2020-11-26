@@ -3,6 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use DigitalClosuxe\Business\Profile\Testing\DatabaseMigrations;
 use DigitalClosuxe\Business\Extension\Eloquent\Models\Profile;
+use DigitalClosuxe\Business\Profile\Model\Contact;
 
 /**
  * @covers Profile::
@@ -25,14 +26,15 @@ class ProfileTest extends TestCase
 
     public function test_it_can_write_and_read()
     {
-        $profile = new Profile();
+        $cachedUuid = md5(uniqid(MODULE_NAMESPACE));
 
-        $profile->account_id = 2;
-        $profile->contact_id = 3;
-
-        $profile->save();
+        $profile = Profile::create([
+            'uuid' => $cachedUuid,
+            'account_id' => md5(uniqid(Account::class)),
+            'contact_id' => md5(uniqid(Contact::class)),
+        ]);
         
-        self::assertNotEmpty($profile->created_at);
+        self::assertSame($profile->uuid, $cachedUuid);
     }
 
     public function tearDown(): void
