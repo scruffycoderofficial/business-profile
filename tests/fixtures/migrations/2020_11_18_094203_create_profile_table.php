@@ -9,9 +9,9 @@ class CreateProfileTable extends Migration
     public function up()
     {
         Capsule::schema()->create('profiles', function(Blueprint $table){
-            $table->increments('id');
-            $table->bigInteger('contact_id');
-            $table->bigInteger('account_id');
+            $table->uuid('uuid');
+            $table->uuid('contact_id')->nullable();
+            $table->uuid('account_id')->nullable();
 
             $table->timestamps();
             
