@@ -1,34 +1,17 @@
 <?php
 
-namespace DigitalClosuxe\Business\Profile\Model;
-
-use DigitalClosuxe\Business\Profile\Contracts\ContactProfile;
-use DigitalClosuxe\Business\Profile\Contracts\ { EmailAddress, MobileNumber };
-use DigitalClosuxe\Business\Profile\Concerns\{ Profile, Contact as ContactConcern };
-
-class Contact implements ContactProfile
+namespace DigitalClosuxe\Business\Profile\Model
 {
-    use Profile, ContactConcern;
+    use DigitalClosuxe\Business\Profile\Contracts\Profile\Contact as BusinessContact;
+    use DigitalClosuxe\Business\Profile\Concerns\{ Profile, Contact as ContactConcern };
 
-    public function contactNumber(): MobileNumber
+    /**
+     * Class Contact
+     * 
+     * @author Siko Luyanda <luyanda.siko@digital-closuxe.co.za>
+     */
+    class Contact implements BusinessContact
     {
-        return new class implements MobileNumber
-        {
-            public function contactNumber(): MobileNumber
-            {
-                return new self();
-            }
-        };
-    }
-
-    public function contactEmail(): EmailAddress
-    {
-        return new class implements EmailAddress
-        {
-            public function contactEmail(): EmailAddress
-            {
-                return new self();
-            }
-        };
+        use Profile, ContactConcern;
     }
 }
