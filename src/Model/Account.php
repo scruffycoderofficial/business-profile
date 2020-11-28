@@ -13,5 +13,10 @@ namespace DigitalClosuxe\Business\Profile\Model
     class Account implements BusinessAccount
     {
         use Profile, Setting;
+
+        public function hasSettings(): bool
+        {
+            return (empty($this->settings));
+        }
     }
 }
