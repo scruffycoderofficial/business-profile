@@ -1,18 +1,34 @@
 <?php
 
-namespace DigitalClosuxe\Business\Profile\Concerns;
-
-trait Profile
+namespace DigitalClosuxe\Business\Profile\Concerns
 {
-    /** [@inheritdoc] */
-    public function isActive(): bool
+    /**
+     * Class Profile
+     * 
+     * @author Siko Luyanda <luyanda.siko@digital-closuxe.co.za>
+     */
+    trait Profile
     {
-        return false;
-    }
+        /**
+         * @var boolean $isActive
+         */
+        protected $isActive = false;
 
-    /** [@inheritdoc] */
-    public function daysSinceActive(): string
-    {
-        return '0 days';
+        /**
+         * @var string $daysSinceActive
+         */
+        protected $daysSinceActive;
+
+        /** [@inheritdoc] */
+        public function isActive(): bool
+        {
+            return $this->isActive;
+        }
+
+        /** [@inheritdoc] */
+        public function daysSinceActive(): string
+        {
+            return $this->daysSinceActive;
+        }
     }
 }

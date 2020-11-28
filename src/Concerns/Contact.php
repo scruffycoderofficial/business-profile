@@ -1,13 +1,48 @@
 <?php
 
-namespace DigitalClosuxe\Business\Profile\Concerns;
-
-use DigitalClosuxe\Business\Profile\Contracts\EmailAddress;
-
-trait Contact
+namespace DigitalClosuxe\Business\Profile\Concerns
 {
-    public function contactEmail(): EmailAddress
+    use DigitalClosuxe\Business\Profile\Contracts\Contact\{ EmailAddress, MobileNumber };
+
+    /**
+     * Class Contact
+     * 
+     * @author Siko Luyanda <luyanda.siko@digital-closuxe.co.za>
+     */
+    trait Contact
     {
-        return new class implements EmailAddress{};
+        /**
+         * @var EmailAddress $emailAddress
+         */
+        protected $emailAddress;
+
+        /**
+         * @var MobileNumber $mobileNumber
+         */
+        protected $mobileNumber;
+
+        /**
+         * @return EmailAddress
+         */
+        public function contactEmail(): EmailAddress
+        {
+            if ($this->emailAddress instanceof EmailAddress) {
+                throw new \Exception('Invalid Email Address type.');
+            }
+
+            return $this->emailAddress;
+        }
+
+        /**
+         * @return MobileNumber
+         */
+        public function contactNumber(): MobileNumber
+        {
+            if ($this->mobileNumber instanceof MobileNumber) {
+                throw new \Exception('Invalid Mobile Number type.');
+            }
+
+            return $this->mobileNumber;
+        }
     }
 }
