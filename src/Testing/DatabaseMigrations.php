@@ -2,24 +2,57 @@
 
 namespace DigitalClosuxe\Business\Profile\Testing
 {
-    use Illuminate\Events\Dispatcher;
-    use Illuminate\Container\Container;
-    use Illuminate\Database\Migrations\Migrator;
-    use Illuminate\Database\Capsule\Manager as Capsule;
-    use Illuminate\Database\ConnectionResolverInterface;
-    use Illuminate\Database\Migrations\DatabaseMigrationRepository;
-    use Illuminate\Database\Migrations\MigrationRepositoryInterface;
+    use Illuminate\{ 
+        Container\Container, 
+        Events\Dispatcher
+    };
 
+    use Illuminate\Database\{ 
+        ConnectionResolverInterface, 
+        Capsule\Manager as Capsule
+    };
+
+    use Illuminate\Database\Migrations\{ 
+        MigrationRepositoryInterface, 
+        DatabaseMigrationRepository,
+        Migrator 
+    };
+
+    /**
+     * Class DatabaseMigrations
+     * 
+     * @author Siko Luyanda <luyanda.siko@digital-closuxe.co.za>
+     */
     trait DatabaseMigrations
     {
+        /**
+         * @var array $paths Paths where migration files are stored
+         */
         private $paths = [];
 
+        /**
+         * @var Capsule $capsule Database Manager
+         */
         private $capsule;
 
+        /**
+         * @var Container $container A PSR-Compliant container implementation
+         */
         private $container;
 
+        /**
+         * @var Migrator $migrator An object responsible for managing our Database migrations and their processing
+         */
         private $migrator;
 
+        /**
+         * Creates Database connection for persistency
+         * 
+         * @param array $configs Database connection configurations
+         * @param array $paths Paths where migration files are stored
+         * @param boolean $bootEloquent Whether to enable Eloquent models
+         * @return void
+         */
         public function createConnection(array $configs, array $paths, $bootEloquent = false)
         {
             $this->paths = $paths;
@@ -37,16 +70,35 @@ namespace DigitalClosuxe\Business\Profile\Testing
             $this->migrator = $this->container->make(Migrator::class);
         }
 
+        /**
+         * Executes given migrations
+         * 
+         * @param array $paths Paths where migration files are stored
+         * @return void
+         */
         public function migrate(array $paths = [])
         {
             $this->migrator->run($this->paths);
         }
 
+        /**
+         * Reverts execution of migrations backwards
+         * 
+         * @param array $paths Paths where migration files are stored
+         * @return void
+         */
         public function rollback(array $paths = [])
         {
             $this->migrator->rollback($this->paths);
         }
 
+        /**
+         * Sets connection configurations
+         * 
+         * @param Capsule $capsule Database Manager
+         * @param array $paths Paths where migration files are stored
+         * @return void
+         */
         private function setConnectionConfigs($capsule, $configs)
         {
             if ($configs['driver'] !== 'sqlite' && $configs['database'] !== ':memory:') {
@@ -56,6 +108,11 @@ namespace DigitalClosuxe\Business\Profile\Testing
             $capsule->addConnection($configs);
         }
 
+        /**
+         * Boots Eloquent and sets the Database Manager to be accessible globally
+         * 
+         * @return void
+         */
         private function bootEloquent()
         {
             $this->capsule->setEventDispatcher(
@@ -68,13 +125,18 @@ namespace DigitalClosuxe\Business\Profile\Testing
             $this->capsule->bootEloquent();
         }
 
+        /**
+         * Binds required classes onto the Container
+         * 
+         * @return void
+         */
         private function configureContainerBindings()
         {
             $this->container = Container::getInstance();
 
             $dbManager = $this->capsule->getDatabaseManager();
 
-            $databaseMigrationRepository = new DatabaseMigrationRepository($dbManager, 'migration');
+            $databaseMigrationRepository = new DatabaseMigrationRepository($dbManager, 'migrations');
             
             if (!$databaseMigrationRepository->repositoryExists()) {
                 $databaseMigrationRepository->createRepository();
