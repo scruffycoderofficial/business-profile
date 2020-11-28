@@ -1,17 +1,22 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Database\{
+    Capsule\Manager as Capsule,
+    Migrations\Migration,
+    Schema\Blueprint,
+};
 
+/**
+ * Class CreateProfileTable
+ */
 class CreateProfileTable extends Migration
 {
     public function up()
     {
         Capsule::schema()->create('profiles', function(Blueprint $table){
-            $table->uuid('uuid');
-            $table->uuid('contact_id')->nullable();
-            $table->uuid('account_id')->nullable();
+            $table->increments('id');
+
+            $table->string('crm_ref');
 
             $table->timestamps();
             
