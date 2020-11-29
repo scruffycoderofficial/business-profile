@@ -2,7 +2,10 @@
 
 namespace DigitalClosuxe\Business\Profile\Contracts\Profile
 {
-    use DigitalClosuxe\Business\Profile\Contracts\Profile\Contact\{ EmailAddress, MobileNumber };
+    use DigitalClosuxe\Business\Profile\Contracts\Contact\{ 
+        EmailAddress, 
+        MobileNumber 
+    };
     
     /**
      * Class Contact
@@ -17,8 +20,8 @@ namespace DigitalClosuxe\Business\Profile\Contracts\Profile
         public function contactEmail(): EmailAddress;
 
         /**
-         * An mobile number treated as primary for this Contact
+         * A mobile number treated as primary for this Contact
          */
-        public function contactNumber(): MobileNumber;
+        public function mobileNumber(): MobileNumber;
     }
 }
