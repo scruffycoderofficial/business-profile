@@ -2,7 +2,11 @@
 
 namespace DigitalClosuxe\Business\Profile\Model
 {
-    use DigitalClosuxe\Business\Profile\Concerns\{ Profile, Setting };
+    use DigitalClosuxe\Business\Profile\Concerns\{ 
+        Profile as ProfileConcern, 
+        Setting as SettingConcern 
+    };
+    
     use DigitalClosuxe\Business\Profile\Contracts\Profile\Account as BusinessAccount;
 
     /**
@@ -12,7 +16,7 @@ namespace DigitalClosuxe\Business\Profile\Model
      */
     class Account implements BusinessAccount
     {
-        use Profile, Setting;
+        use ProfileConcern, SettingConcern;
 
         public function hasSettings(): bool
         {

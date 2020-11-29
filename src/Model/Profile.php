@@ -21,5 +21,24 @@ namespace DigitalClosuxe\Business\Profile\Model
     class Profile implements BusinessContact, BusinessAccount 
     {
         use ProfileConcern, ContactConcern, SettingConcern;
+
+        public function hasSettings(): bool
+        {
+            return (empty($this->settings));
+        }
+
+        /**
+         */
+        public function getContact()
+        {
+            return new Contact('john.doe@example.com', '083-123-45678');
+        }
+
+        /**
+         */
+        public function getAccount()
+        {
+            return new Account;
+        }
     }
 }
