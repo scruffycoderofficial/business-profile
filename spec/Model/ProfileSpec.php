@@ -5,8 +5,10 @@ namespace spec\DigitalClosuxe\Business\Profile\Model;
 use PhpSpec\ObjectBehavior;
 
 use DigitalClosuxe\Business\Profile\Model\Profile;
-use DigitalClosuxe\Business\Profile\Contracts\AccountProfile;
-use DigitalClosuxe\Business\Profile\Contracts\ContactProfile;
+
+use DigitalClosuxe\Business\Profile\Contracts\Profile\{
+    Account, Contact
+};
 
 class ProfileSpec extends ObjectBehavior
 {
@@ -17,11 +19,11 @@ class ProfileSpec extends ObjectBehavior
 
     function it_has_a_contact_profile()
     {
-        $this->getContact()->shouldHaveType(ContactProfile::class);
+        $this->getContact()->shouldHaveType(Contact::class);
     }
 
     function it_has_an_account_profile()
     {
-        $this->getAccount()->shouldHaveType(AccountProfile::class);
+        $this->getAccount()->shouldHaveType(Account::class);
     }
 }
