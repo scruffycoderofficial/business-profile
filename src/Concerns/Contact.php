@@ -26,7 +26,7 @@ namespace DigitalClosuxe\Business\Profile\Concerns
          */
         public function contactEmail(): EmailAddress
         {
-            if ($this->emailAddress instanceof EmailAddress) {
+            if (!$this->emailAddress instanceof EmailAddress) {
                 throw new \Exception('Invalid Email Address type.');
             }
 
@@ -36,9 +36,9 @@ namespace DigitalClosuxe\Business\Profile\Concerns
         /**
          * @return MobileNumber
          */
-        public function contactNumber(): MobileNumber
+        public function mobileNumber(): MobileNumber
         {
-            if ($this->mobileNumber instanceof MobileNumber) {
+            if (!$this->mobileNumber instanceof MobileNumber) {
                 throw new \Exception('Invalid Mobile Number type.');
             }
 
