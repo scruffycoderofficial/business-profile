@@ -16,8 +16,8 @@ class CreateProfileAccountTable extends Migration
         Capsule::schema()->create('profile_accounts', function(Blueprint $table){
             $table->increments('id');
 
-            $table->string('name');
-            $table->string('number');
+            $table->string('name', 255);
+            $table->string('number', 10);
 
             $table->integer('profile_id')->unsigned()->index()->nullable();
             $table->foreign('profile_id')->references('id')->on('profiles');

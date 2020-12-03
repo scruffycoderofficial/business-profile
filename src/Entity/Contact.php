@@ -17,7 +17,7 @@ namespace DigitalClosuxe\Business\Profile\Entity
 
         /** [@inheritdoc] */
         public $fillable = [
-            'firstname', 'lastname', 'profile_id'
+            'firstname', 'lastname', 'email_address', 'mobile_number', 'profile_id'
         ];
 
         /**

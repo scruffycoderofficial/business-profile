@@ -18,12 +18,14 @@ class ProfileTest extends TestCase
     const PROFILE_PROPS = [
         'crm_ref' => 'DCG01-2020-0001',
         'account' => [
-            'name' => 'Luyanda Test Account', 
+            'name' => 'John Doe Test Account', 
             'number' => '0987654321'
         ],
         'contact' => [
-            'firstname' => 'Luyanda', 
-            'lastname' => 'Siko',
+            'firstname' => 'John', 
+            'lastname' => 'Doe',
+            'email_address' => 'john.doe@example.com',
+            'mobile_number' => '083-123-45678'
         ]
     ];
 
@@ -40,19 +42,21 @@ class ProfileTest extends TestCase
     public function it_can_write_and_read_a_profile_with_associated_contact()
     {
         $profile = Profile::create(['crm_ref' => self::PROFILE_PROPS['crm_ref']]);
-        $contact = new Contact(['firstname' => 'Luyanda', 'lastname' => 'Siko']);
+        $contact = new Contact(['firstname' => 'John', 'lastname' => 'Doe', 'email_address' => 'john.doe@example.com', 'mobile_number' => '083-123-45678']);
 
         $profile->contact()->save($contact);
 
         self::assertSame(self::PROFILE_PROPS['contact']['firstname'], $profile->contact->firstname);
         self::assertSame(self::PROFILE_PROPS['contact']['lastname'], $profile->contact->lastname);
+        self::assertSame(self::PROFILE_PROPS['contact']['email_address'], $profile->contact->email_address);
+        self::assertSame(self::PROFILE_PROPS['contact']['mobile_number'], $profile->contact->mobile_number);
     }
 
     /** @test */
     public function it_can_write_and_read_a_profile_with_associated_account()
     {
         $profile = Profile::create(['crm_ref' => self::PROFILE_PROPS['crm_ref']]);
-        $account = new Account(['name' => 'Luyanda Test Account', 'number' => '0987654321']);
+        $account = new Account(['name' => 'John Doe Test Account', 'number' => '0987654321']);
 
         $profile->contact()->save($account);
 
