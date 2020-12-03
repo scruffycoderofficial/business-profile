@@ -1,4 +1,15 @@
 {
+    "name": "scruffycoder/business-profile",
+    "description": "A library that can be used to manage Business Profile objects in any Application Context.",
+    "keywords": ["software engineering", "domain-driven design", "business profile", "business", "profile", "application context"],
+    "homepage": "https://digital-closuxe.co.za",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Luyanda Siko",
+            "email": "sikoluyanda@gmail.com"
+        }
+    ],
     "require-dev": {
         "phpspec/phpspec": "^6.2",
         "friendsofphp/php-cs-fixer": "^2.16",
@@ -18,5 +29,8 @@
         "psr-4": {
             "DigitalClosuxe\\Business\\Profile\\": "src/"
         }
+    },
+    "require": {
+        "redcrystal/cast": "^1.0"
     }
 }
