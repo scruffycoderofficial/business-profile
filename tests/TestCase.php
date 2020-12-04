@@ -2,8 +2,8 @@
 
 namespace DigitalClosuxe\Business\Profile\Tests;
 
-use PHPUnit\Framework\TestCase as BaseTestCase;
-use DigitalClosuxe\Business\Profile\Testing\DatabaseMigrations;
+use DigitalClosuxe\Business\Profile\Testing\TestCase as BaseTestCase;
+use DigitalClosuxe\Business\Profile\Testing\Concerns\DatabaseMigrations;
 
 class TestCase extends BaseTestCase
 {
@@ -12,12 +12,11 @@ class TestCase extends BaseTestCase
     /** [@inheritdoc] */
     public function setUp(): void
     {
-        $this->createConnection([
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-        ], [
-            __DIR__ . '/../infrastructure/database/migrations' //Todo: Provide a way to override this to avoid breaking migrations
-        ], true);
+        $migrations = [
+            __DIR__ . '/../infrastructure/database/migrations'
+        ];
+
+        $this->connection('sqlite', ':memory:', $migrations);
 
         $this->migrate();
     }
@@ -26,5 +25,11 @@ class TestCase extends BaseTestCase
     public function tearDown(): void
     {
         $this->rollback();
+    }
+
+    /** [@inheritdoc] */
+    protected function connection(string $driver = 'sqlite', string $connection, array $migrationPaths)
+    {
+        $this->createConnection(['driver' => $driver, 'database' => $connection], $migrationPaths, true);
     }
 }
