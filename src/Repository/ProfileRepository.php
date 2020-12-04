@@ -2,13 +2,11 @@
 
 namespace DigitalClosuxe\Business\Profile\Repository
 {
-    use DigitalClosuxe\Business\Profile\Model\Profile;
-    use DigitalClosuxe\Business\Profile\Identity\ProfileId;
-
-    interface ProfileRepository
+    /**
+     * Class ProfileRepository
+     */
+    final class ProfileRepository extends Repository
     {
-        public function byId(ProfileId $profileId);
-
-        public function save(Profile $profile);
+        protected $tableName = 'profiles';
     }
 }
