@@ -1,6 +1,6 @@
 <?php
 
-namespace DigitalClosuxe\Business\Profile\Testing
+namespace DigitalClosuxe\Business\Profile\Testing\Concerns
 {
     use Illuminate\{ 
         Container\Container, 
@@ -90,6 +90,11 @@ namespace DigitalClosuxe\Business\Profile\Testing
         public function rollback(array $paths = [])
         {
             $this->migrator->rollback($this->paths);
+        }
+
+        public function getCapsule()
+        {
+            return $this->capsule;
         }
 
         /**
