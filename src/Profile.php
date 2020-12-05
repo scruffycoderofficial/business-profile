@@ -3,6 +3,8 @@
 namespace DigitalClosuxe\Business\Profile
 {
     use DigitalClosuxe\Business\Profile\Context\Context;
+    use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 /**
      * Class Profile
      */
@@ -25,11 +27,17 @@ namespace DigitalClosuxe\Business\Profile
             $this->initializers[] = $className;
         }
 
+        /**
+         * @return boolean
+         */
         public function hasInitializers()
         {
             return empty($this->initializers);
         }
 
+        /**
+         * @return array
+         */
         public function getInitializers()
         {
             return $this->initializers;
@@ -49,6 +57,9 @@ namespace DigitalClosuxe\Business\Profile
             return __DIR__ . '/Context/Resources';
         }
 
+        /**
+         * @return ContainerBuilder
+         */
         public function getContainerBuilder()
         {
             if (is_null($this->containerBuilder)) {
