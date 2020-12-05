@@ -1,0 +1,5 @@
+services:
+
+  DigitalClosuxe\Business\Profile\DatadabaseAdapter:
+    tags:
+      - { name: profile_database_adapter }
