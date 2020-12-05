@@ -54,7 +54,19 @@ namespace DigitalClosuxe\Business\Profile
                 throw new \Exception('Cannot locate service configuration path.');
             }
 
-            return __DIR__ . '/Context/Resources';
+            return $path;
+        }
+
+        public function getServiceConfigPath()
+        {
+
+            $path = __DIR__ . '/..';
+
+            if (is_dir($path) && !is_readable($path)) {
+                throw new \Exception('Cannot locate service configuration path.');
+            }
+
+            return $path;
         }
 
         /**

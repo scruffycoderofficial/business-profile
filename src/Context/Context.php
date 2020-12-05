@@ -7,6 +7,7 @@ namespace DigitalClosuxe\Business\Profile\Context
     use Psr\Container\ContainerInterface;
 
     use DigitalClosuxe\Business\Profile\Context\{ 
+        Initializer\GenericConfigurationInitializer,
         Initializer\ServiceConfigurationInitializer, 
         Events\ContextInitialized
     };
@@ -62,6 +63,7 @@ namespace DigitalClosuxe\Business\Profile\Context
          */
         protected function registerEvents()
         {
+            $this->getProfileManager('events')->listen([ContextInitialized::class], GenericConfigurationInitializer::class);
             $this->getProfileManager('events')->listen([ContextInitialized::class], ServiceConfigurationInitializer::class);
         }
     }

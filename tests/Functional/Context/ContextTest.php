@@ -35,7 +35,23 @@ namespace DigitalClosuxe\Business\Profile\Tests\Functional\Context
         {
             $this->context->trigger(new ContextInitialized($this->context));
 
-            self::assertTrue($this->context->getContainerBuilder()->has('profile.events.manager'));
+            self::assertTrue(
+                $this->context
+                    ->getContainerBuilder()
+                    ->has(\DigitalClosuxe\Business\Profile\DatadabaseAdapter::class)
+            );
+        }
+
+        /** @test */
+        public function it_has_database_parameters()
+        {
+            $this->context->trigger(new ContextInitialized($this->context));
+
+            self::assertTrue(
+                $this->context
+                    ->getContainerBuilder()
+                    ->hasParameter('database_driver')
+            );
         }
 
         public function tearDown(): void
