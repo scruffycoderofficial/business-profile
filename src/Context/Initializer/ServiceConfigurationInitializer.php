@@ -13,16 +13,19 @@ namespace DigitalClosuxe\Business\Profile\Context\Initializer
     final class ServiceConfigurationInitializer
     {
         /**
-         * @param Prifile $profile
+         * @param ContextInitialized $event
          */
         public function handle(ContextInitialized $event)
         {
-            if (is_null($event->getProfileContext()->getContainerBuilder())) {
-                throw new \Exception("Profile Service event is missing a Container Builder.");
+            /** @var Profile $profile */
+            $profile = $event->getProfileContext();
+
+            if (is_null($profile->getContainerBuilder())) {
+                throw new \Exception("Profile Context is missing Contaijner Builder.");
             }
 
-            $containerBulder = $event->getProfileContext()->getContainerBuilder();
-            $serviceYamlResourceFilePath = $event->getProfileContext()->getConfigPath();
+            $containerBulder = $profile->getContainerBuilder();
+            $serviceYamlResourceFilePath = $profile->getConfigPath();
             
             $this->loadConfiguration($containerBulder, $serviceYamlResourceFilePath);
         }
