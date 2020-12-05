@@ -12,6 +12,7 @@ namespace DigitalClosuxe\Business\Profile\Tests\Functional\Context
         Profile 
     };
     use DigitalClosuxe\Business\Profile\Context\Events\ContextInitialized;
+    use DigitalClosuxe\Business\Profile\DatadabaseAdapter;
 
 /**
      * Class ContextTest
@@ -20,6 +21,9 @@ namespace DigitalClosuxe\Business\Profile\Tests\Functional\Context
      */
     class ContextTest extends TestCase
     {
+        /**
+         * @var Context $context
+         */
         protected $context;
 
         public function setUp(): void
@@ -33,25 +37,25 @@ namespace DigitalClosuxe\Business\Profile\Tests\Functional\Context
         /** @test */
         public function it_can_listen_to_triggered_events_with_attached_event_name_and_listener()
         {
+            /** @var Context $$this->context */
             $this->context->trigger(new ContextInitialized($this->context));
 
-            self::assertTrue(
-                $this->context
-                    ->getContainerBuilder()
-                    ->has(\DigitalClosuxe\Business\Profile\DatadabaseAdapter::class)
-            );
+            /** @var ContainerBuilder $containerBuilder */
+            $containerBuilder = $this->context->getContainerBuilder();
+
+            self::assertTrue($containerBuilder->has(DatadabaseAdapter::class));
         }
 
         /** @test */
-        public function it_has_database_parameters()
+        public function it_has_database_parameters_through_generic_configuration_initializer()
         {
+            /** @var Context $$this->context */
             $this->context->trigger(new ContextInitialized($this->context));
 
-            self::assertTrue(
-                $this->context
-                    ->getContainerBuilder()
-                    ->hasParameter('database_driver')
-            );
+            /** @var ContainerBuilder $containerBuilder */
+            $containerBuilder = $this->context->getContainerBuilder();
+
+            self::assertTrue($containerBuilder->hasParameter('database_driver'));
         }
 
         public function tearDown(): void
